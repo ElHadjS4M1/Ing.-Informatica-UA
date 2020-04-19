@@ -1,0 +1,1 @@
+existe un archivo llamado GOD que contenia ejercicios resueltos, suerte a quien lo encuentre
