@@ -1,0 +1,17 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n al \IeC {\'a}lgebra lineal}{3}
+\contentsline {subsection}{\numberline {1.1}Resolucion de SL por metodos directos}{4}
+\contentsline {subsubsection}{\numberline {1.1.1}Gauss y Gauss-Jordan}{4}
+\contentsline {subsubsection}{\numberline {1.1.2}M\IeC {\'e}todo de la inversa}{4}
+\contentsline {subsubsection}{\numberline {1.1.3}Descomposici\IeC {\'o}n LU}{5}
+\contentsline {subsubsection}{\numberline {1.1.4}Metodo de Rouche}{5}
+\contentsline {subsection}{\numberline {1.2}Resolucion de SL por metodos iterativos}{5}
+\contentsline {section}{\numberline {2}Matrices}{6}
+\contentsline {subsection}{\numberline {2.1}Conocimientos b\IeC {\'a}sicos}{6}
+\contentsline {subsection}{\numberline {2.2}Matrices compuestas}{8}
+\contentsline {section}{\numberline {3}Espacio vectorial}{9}
+\contentsline {subsection}{\numberline {3.1}Espacio y subespacio vectorial}{9}
+\contentsline {subsubsection}{\numberline {3.1.1}Combinaci\IeC {\'o}n lineal}{9}
+\contentsline {subsubsection}{\numberline {3.1.2}Envoltura lineal}{9}
+\contentsline {subsection}{\numberline {3.2}Matrices y espacios vectoriales}{10}
+\contentsline {section}{\numberline {4}Valores y vectores propios de una matriz}{10}
