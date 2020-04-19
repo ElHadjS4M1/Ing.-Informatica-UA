@@ -1,0 +1,88 @@
+Para iniciar el prolog debemos introducir en la terminal "swipl" y a continuacion introducir emacs('NOMBRE_ARCHIVO.pl'). Para abrir el editor
+
+Predicados (en logica): se utilizan para expresar propiedades de los objetos y relaciones entre ellos. En prolog reciben el nombre de hechos.
+
+Los nombres de predicado deben expresar siempre con minuscula y al final de termina con un punto.
+
+    nombre_predicado(argu1, argu2, ..., arguX)
+    
+Ejemplos
+%Predicados que describen propiedades de los objetos
+mujer(ana).
+mujer(eva).
+hombre(jorge).
+hombre(juan).
+
+%predicados que describen relaciones entre objetos
+gusta(juan,ana). #no correspondido
+
+%VARIABLES 
+
+La variables de utilizan en prolog para representar cualquier objeto. Siempre deben de comenzar por metra mayuscula o por el caracter subrayado (Xblablabla o _blablabla), algunos ejemplos son:
+X
+Indice
+_contador
+
+#para que continue el listado de objetos qur cumplen un predicado se pone en la terminal ' ; '
+
+%conectivas logicas 
+-Conjuncion (Y):
+     Se representa con una coma ( , )
+     X,Y
+-Disyuncion (O)
+     Se representa con punto y coma ( ; )
+     X;Y
+-Negacion (NO)
+      Se representa poniendo (no) delante del objeto 
+      no(X)
+-Implicacion o condicional
+      Permite indicar que un hecho depende de un conjunto de hechos. En lenguaje natural decimos SI.... ENTONCES.... 
+       En prolog se conocen como reglas:
+       cabeza_regla :- cuerpo_regla.
+       La cabeza describe el hecho que queremos definir. El hecho de la cabeza se cumple cuando se cumplen todos los hechos  que hay en el cuerpo de la regla, por ejemplo:
+       pareja(X,Y):- gusta(X,Y),gusta(Y,X). #se define en el EDI y en la terminal solo usas pareja(X,Y).
+
+EMPEZAMOS CON PLMAN
+
+Logica.i3a.ua.es nombre de usuario eem25 pass 
+
+Funcionamiento:
+Descargar en la web dada y descomprimir el .zip (4 archivos)
+En la carpeta maps/ejemplos hay mapas con los que practicar su uso
+
+Cd ubicacion de la caroeta plman
+(Terminal)Gedit sol_MAPA.pl &
+(Editor) :-use_module('pl-man-game/main').
+(Editor) do(move(up)). (Predicado cuakquiera para ver el mapa)
+Ejecutar el mapa con los movimientos de la solucion
+(Terminal) $ ./plman maps/RUTADELMAPA/MAPA.pl sol_MAPA.pl
+
+ACCIONES
+
+ do(X): realiza una de las siguientes acciones
+-move(Y): de mueve a la posicion Y
+-get(Y): coge el objeto en la posicion Y
+-drop(Y): deja el objeto en la posicion Y
+-use(Y): usa el objeto que tiene en la posicion Y
+ Y es una posicion respecto el plman {up, down, left, right}
+ see(normal,X,Y): nos permite ver el objeto (Y) que este en las posiciones a su alrededor en determinadas posiciones (X)
+ -X={right, left, up, down, up-left/right, down-left/right }
+ -Y= cualquier objeto existente en el mapa ( puede ir entre comillas simples o no, sgun el objeto)
+ 
+//de esta manera creamos condiciones ordenadas con las que el plman se movera segun lo que trnga en sus proximidades
+
+//usando la conjuncion ,writeln('TEXTO'). Comenta el texto cada vez que realice la accion
+       
+//para soltar un objeto
+
+PARA LA FASE 2
+
+El predicado havingObject (si llevamos cualquier objeto), not(havingObject) y havingObject(appearance(OBJETO)) (para un determinado objeto) dentro del cuerpo de un condicional permite delimitar movimientos para condiciones distintas
+
+Simplificar predicados usandos alias, puestas al principio siempre, por ejemplo:
+-s(A,B):- see(normal,A,B).
+-hO(OBJ):-havingObject(appearance(OBJ)).
+
+Modularizsr el codigo, uso de subreglas. Con esto puedes organizsr y priorizar las rrglas a traves de otras, por ejemplo
+-do(ACCION):- hO(OBJ), do1(OBJETO, ACCION)
+-
