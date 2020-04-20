@@ -1,0 +1,23 @@
+PROG3 Seminario 1
+.—
+
+- equals()
+
+Pera p = new Pera();
+Pera p2 = new Pera();
+Manzana m =  new Manzana();
+
+p.equals(null) -> false
+
+
+p.equals(p) -> true
+p.equals(m) -> false
+p.equals(p2) == p2.equals(p)
+
+Clase c1 = new Clase(1);
+Clase c2 = new Clase(2);
+Clase c3 = c1;
+
+c1.equals(c1);
+c1.equals(c2);
+c1.equals(c3);

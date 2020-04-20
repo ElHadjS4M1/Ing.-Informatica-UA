@@ -1,0 +1,200 @@
+-- Soluciones ejercicios Indices-Transacciones
+
+--Trabajando con índices
+
+--1
+insert into TRATAMIENTO values('TR01','facial perlas', 60);
+insert into TRATAMIENTO values('TR02','facial oro', 100);
+insert into TRATAMIENTO values('TR03','peeling facial', 55);
+insert into TRATAMIENTO values('TR04','peeling corporal', 70);
+insert into TRATAMIENTO values('TR05','facial de-stress', 80);
+
+--2
+create table TRATAMIENTO_CARO(
+codigo char(5), 
+precio number(3),
+constraint pkTratamientoCaro primary key (codigo));
+
+--3
+insert into TRATAMIENTO_CARO (select codigo, precio from tratamiento where precio > 20);
+
+--4
+
+explain plan 
+set statement_id='trat1'
+for insert into TRATAMIENTO_CARO (select codigo, precio from tratamiento where precio > 20);
+
+select operation, options, object_name, position
+from plan_table
+where statement_id='trat1';
+
+RESULTADO:
+TABLE ACCESS FULL (a la tabla TRATAMIENTO)
+
+--5
+select * from tratamiento where precio > 50;
+Tiempo de ejecución de la select: tarea terminada en 0,631 segundos
+
+-- también se podría haber probado haciendo select de la tabla tratamiento_caro.
+--6
+
+explain plan 
+set statement_id='tratEsp'
+for select * from tratamiento where precio > 50;
+
+select operation, options, object_name, position
+from plan_table
+where statement_id='tratEsp';
+
+RESULTADO:
+TABLE ACCESS FULL (tabla TRATAMIENTO)
+
+-- también se podría haber probado haciendo select de la tabla tratamiento_caro.
+
+--7
+create index idx_precioTratamiento on tratamiento (precio);
+
+explain plan 
+set statement_id='tratEsp1'
+for select * from tratamiento where precio > 50;
+
+select operation, options, object_name, position
+from plan_table
+where statement_id='tratEsp1';
+
+No se obtiene el mismo plan de ejecución. Ahora al tener el índice definido sobre
+la columna precio, el acceso a los datos se realiza utilizando el índice definido.
+RESULTADO:
+TABLE ACCESS BY INDEX ROWID BATCHED (tabla TRATAMIENTO)
+INDEX RANGE SCAN (índice IDX_PRECIOTRATAMIENTO)
+
+--comprueba si sucede lo mismo si el índice se define sobre la columna precio de la tabla tratamiento_caro.
+
+--8
+select * from tratamiento where precio > 50;
+
+Tiempo de ejecución de la select: tarea terminada0,081 segundos. Si comparamos este tiempo de respuesta con el tiempo de respuesta del ejercicio 5, vemos que ha habido una mejora y cuando se utiliza el índice el acceso es más rápido.
+
+--Comprendiendo el funcionamiento de COMMIT, SAVEPOINT y ROLLBACK
+
+--1
+create table prueba1 (a number(2), b number(5), constraint pkPrueba1 primary key (a));
+create table prueba2 (a char(1), b number(4), constraint pkPrueba2 primary key (a));
+
+--2
+
+1) En la sesión 1 se insertan las filas y se muestra toda la información de la tabla prueba1, mientras que en la sesión 2, al ejecutar la select indicada no devuelve filas. MOTIVO: los cambios realizados en la sesión 1 por las transacciones ejecutadas (insert) aún no son visibles para la sesión 2, puesto que no se ha hecho el commit. Sin embargo, la tabla sí que existe en la sesión 2 puesto que al ejecutar la sentencia "create table" en Oracle, esta sentencia lleva un commit implícito.
+ 
+SESIÓN 1: 
+1 filas insertadas.
+1 filas insertadas.
+1 filas insertadas.
+         A          B
+---------- ----------
+         1       3400 
+         4       4100 
+         8       3700 
+
+SESIÓN 2:
+no se ha seleccionado ninguna fila
+		 
+2)Al confirmar los cambios en la sesión 1 (commit) ahora sí que desde la sesión 2, podemos ver la información de la tabla que se insertó desde la sesión 1.
+
+SESIÓN 1:
+confirmado.
+         A          B
+---------- ----------
+         1       3400 
+         4       4100 
+         8       3700 
+		 
+SESIÓN 2:
+         A          B
+---------- ----------
+         1       3400 
+         4       4100 
+         8       3700 
+
+3) En la sesión 1, no es posible insertar las filas('A',4),('B',4),('C',4), puesto que se duplicaría el valor para la clave primaria en la tabla prueba2. Y en la sesión 2 al consultar la tabla prueba2, vemos que no nos devuelve ninguna fila. En la sesión 1 no se han confirmado los cambios, aunque sí que hemos introducido un punto de control.
+
+SESIÓN 1:
+1 filas insertadas.
+1 filas insertadas.
+1 filas insertadas.
+savepoint punto1
+Error que empieza en la línea 8 del comando:
+insert into prueba2 values('A',4)
+Informe de error:
+Error SQL: ORA-00001: restricción única (ELLORET.PKPRUEBA2) violada
+00001. 00000 -  "unique constraint (%s.%s) violated"
+*Cause:    An UPDATE or INSERT statement attempted to insert a duplicate key.
+           For Trusted Oracle configured in DBMS MAC mode, you may see
+           this message if a duplicate entry exists at a different level.
+*Action:   Either remove the unique restriction or do not insert the key.
+Error que empieza en la línea 10 del comando:
+insert into prueba2 values('B',4)
+Informe de error:
+Error SQL: ORA-00001: restricción única (ELLORET.PKPRUEBA2) violada
+00001. 00000 -  "unique constraint (%s.%s) violated"
+*Cause:    An UPDATE or INSERT statement attempted to insert a duplicate key.
+           For Trusted Oracle configured in DBMS MAC mode, you may see
+           this message if a duplicate entry exists at a different level.
+*Action:   Either remove the unique restriction or do not insert the key.
+Error que empieza en la línea 12 del comando:
+insert into prueba2 values('C',4)
+Informe de error:
+Error SQL: ORA-00001: restricción única (ELLORET.PKPRUEBA2) violada
+00001. 00000 -  "unique constraint (%s.%s) violated"
+*Cause:    An UPDATE or INSERT statement attempted to insert a duplicate key.
+           For Trusted Oracle configured in DBMS MAC mode, you may see
+           this message if a duplicate entry exists at a different level.
+*Action:   Either remove the unique restriction or do not insert the key.
+1 filas insertadas.
+Error que empieza en la línea 16 del comando:
+insert into prueba2 values('A',8)
+Informe de error:
+Error SQL: ORA-00001: restricción única (ELLORET.PKPRUEBA2) violada
+00001. 00000 -  "unique constraint (%s.%s) violated"
+*Cause:    An UPDATE or INSERT statement attempted to insert a duplicate key.
+           For Trusted Oracle configured in DBMS MAC mode, you may see
+           this message if a duplicate entry exists at a different level.
+*Action:   Either remove the unique restriction or do not insert the key.
+A          B
+- ----------
+A          1 
+B          1 
+C          1 
+D          4 
+
+SESIÓN 2:
+no se ha seleccionado ninguna fila
+
+4) Aquí vemos cómo en la sesión 1, deshacemos los cambios hasta el punto de control definido y por tanto, al mostrar la información de la tabla, sólo obtenemos 3 filas (ya que la correspondiente a la tupla: (D, 4) se ha deshecho la operación de inserción. En la sesión 2, no vemos ningún fila de la tabla, pues no se han confirmado los cambios.
+
+SESIÓN 1:
+rollback terminado.
+A          B
+- ----------
+A          1 
+B          1 
+C          1 
+
+SESIÓN 2:
+no se ha seleccionado ninguna fila
+
+5) Al confirmar los cambios en la sesión 1, éstos ya son visibles y por tanto al consultar la tabla prueba2 desde la sesión 2, vemos las filas insertadas.
+
+SESIÓN 1: 
+confirmado.
+A          B
+- ----------
+A          1 
+B          1 
+C          1 
+
+SESIÓN 2: 
+A          B
+- ----------
+A          1 
+B          1 
+C          1 

@@ -1,0 +1,15 @@
+INTRO TO CLASSES AND OBJECTS
+_________________
+
+- OO paragim 
+	- OO -> a program is a collection of objects (each one is an istance of a class) cooperative iteracting.
+				The classes are part of a class hierarchy via inheritance
+		- Encapsulation (object state and behavior are wrapped together hiding information (mechanism to restrict access to stuff which is not relevant outisde)).
+					state: set of attributes and their values 
+					behaviour: set of operations you may ask to the object to perme
+					identity: property that differentiates one object from another
+	- procedural (C (año pasado)).
+	- logical (Prolog).
+	- functional (Lisp)
+- abstraction
+- model

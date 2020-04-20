@@ -1,0 +1,1 @@
+Existe la leyenda de un archivo GOD, preguntad por grupos quien lo tiene, aqui no lo subire si no me dan el visto bueno
