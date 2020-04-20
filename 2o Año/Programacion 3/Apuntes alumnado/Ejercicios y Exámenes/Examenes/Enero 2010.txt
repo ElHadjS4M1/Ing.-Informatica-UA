@@ -1,0 +1,42 @@
+Contesta si la frase es Verdadera (A) o Falsa (B)
+--------------------------------------------------------
+
+F 1. Tanto la herencia protegida como la privada permiten a una clase derivada acceder a las propiedades privadas de la clase base.
+
+F 2. Una clase abstracta se caracteriza por no tener atributos.
+
+V 3. La siguiente clase: class S {public: virtual ~S()=0; virtual void f()=0;}; constituye una interfaz en C++.
+
+F 4. Desde un método de una clase derivada nunca puede invocarse un método implementado con idéntica signatura de una de sus clases base.
+
+F 5. Los métodos con enlace dinámico son abstractos.
+
+F 6. Los constructores de las clases abstractas siempre son métodos abstractos.
+
+F 7. Un atributo de clase debe tener visibilidad pública para poder ser accedido por los objetos de la clase.
+
+V 8. Un método sobrecargado es aquel que tiene más de una implementación, diferenciando cada una por el ámbito en el que se declara, o por el número, orden y tipo de argumentos que admite.
+
+F 9. Un método abstracto es un método con polimorfismo puro.
+
+V 10. Todo espacio de nombres define su propio ámbito, distinto de cualquier otro ámbito.
+
+V 11. En la sobrecarga de operadores binarios para objetos de una determinada clase, si se sobrecarga como función miembro, el operando de la izquierda siempre es un objeto de la clase.
+
+V 12. La genericidad se considera una característica opcional de los lenguajes orientados a objetos 
+
+V 13. Hablamos de encapsulación cuando diferenciamos entre interfaz e implementación. 
+
+F 14. Una operación de clase no es una función miembro de la clase. 
+
+V 15. En C++, si no se define ningún constructor, el compilador proporciona por defecto uno sin argumentos.
+
+F 16. Los constructores siempre deben tener visibilidad pública.
+
+F 17. En C++, si no se captura una excepción lanzada por un método, se produce un error de compilación.
+
+V 18. En C++, la cláusula throw() tras la declaración de una función indica que ésta no lanza ninguna excepción.
+
+F 19. Dada una clase genérica, no puede ser utilizada como clase base en herencia múltiple. 
+
+F 20. De una clase interfaz no se pueden crear instancias. De una clase abstracta sí.
