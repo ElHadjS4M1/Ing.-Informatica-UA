@@ -7,6 +7,7 @@ Examenes:
 		El examen sera no presencial, mediante un meet en el que hay que acceder con el gcloud.
 		El modelo sera similiar al del primer parcial a traves de un cuestionario del tipo test
 		en Moodle.
+	-Fecha 10/5 Contenido: Entrega de la practica 8 "Algoritmos con retroceso"
 	-C3 y C4: se desconoce, F.
 
 
