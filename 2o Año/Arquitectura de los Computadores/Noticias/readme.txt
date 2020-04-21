@@ -18,8 +18,10 @@ Anuncios destacables:
 	-Enlace a los meets:
 		https://meet.jit.si/GrupoPracticasACLunesTarde
 	-Enlaces de autoevaluacion:
-		https://kahoot.it/challenge/0633411?challenge-id=6aa7bc2a-5350-42bb-bdfe-dc05a3569019_1584968594301
-		https://kahoot.it/challenge/0212991?challenge-id=6aa7bc2a-5350-42bb-bdfe-dc05a3569019_1584968749711
+		+Conociendo a ISA:
+		https://kahoot.it/challenge/06934372?challenge-id=6aa7bc2a-5350-42bb-bdfe-dc05a3569019_1587402173619
+		+El juego de instrucciones: 
+		https://kahoot.it/challenge/0954630?challenge-id=6aa7bc2a-5350-42bb-bdfe-dc05a3569019_1587402420139
 		En Moodle estan subidos dos test de simulacro para los parciales del tema 1-2 y 3-4.		
 	-Enlaces a videos de interes:
 		https://vertice.cpd.ua.es/212939.
