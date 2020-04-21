@@ -7,6 +7,7 @@ Examenes:
 		Examen a traves de Moodle.
 	-Fecha: 18/5 al 22/5, horario de laboratorios del alumno Contenido: Temas 3 y 4 de Teoria.
 		Examen a traves de Moodle.
+	-Fecha: 29/5 Contenido: Práctica de la fase 3, se utilizara el MIPS y es de forma individual.
 	-C3 y C4, se desconoce, F
 
 
@@ -19,6 +20,7 @@ Anuncios destacables:
 	-Enlaces de autoevaluacion:
 		https://kahoot.it/challenge/0633411?challenge-id=6aa7bc2a-5350-42bb-bdfe-dc05a3569019_1584968594301
 		https://kahoot.it/challenge/0212991?challenge-id=6aa7bc2a-5350-42bb-bdfe-dc05a3569019_1584968749711
+		En Moodle estan subidos dos test de simulacro para los parciales del tema 1-2 y 3-4.		
 	-Enlaces a videos de interes:
 		https://vertice.cpd.ua.es/212939.
 	-Enlaces a la Guia Docente:
@@ -27,4 +29,5 @@ Anuncios destacables:
 		+lectura del tema 6: Segmentación del libro: J.L. Hennessy y D.A. Patterson, 1993. Arquitectura de 
 		Computadoras: un Enfoque Cuantitativo. McGraw-Hill o su correspondiente edición en Inglés: J.L. 
 		Hennessy y D. A. Patterson, 2003. Computer Architecture: a quantitative approach, Morgan Kaufmann.
+	
 	
